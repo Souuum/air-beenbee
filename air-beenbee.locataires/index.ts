@@ -18,7 +18,7 @@ const connection = Sequelize.connection;
 
 
 const dbInit = () => {
-  Locataire.sync({ force: true })
+  Locataire.sync({ force: false })
 }
 
 dbInit();
