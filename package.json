@@ -11,5 +11,9 @@
   "dependencies": {
     "express": "^4.19.2",
     "lerna": "^8.1.2"
+  },
+  "scripts": {
+    "dev": "tsc -w && lerna run dev --parallel"
   }
+
 }
