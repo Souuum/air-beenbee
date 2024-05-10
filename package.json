@@ -1,5 +1,10 @@
 {
   "name": "air-beenbee",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "air-beenbee.*"
+  ],
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
@@ -13,7 +18,7 @@
     "lerna": "^8.1.2"
   },
   "scripts": {
-    "dev": "tsc -w && lerna run dev --parallel"
+    "dev": "bun lerna run dev --stream"
   }
 
 }
