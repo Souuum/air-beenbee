@@ -1,0 +1,14 @@
+{
+  "name": "air-beenbee",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "lerna": "^8.1.2"
+  }
+}
