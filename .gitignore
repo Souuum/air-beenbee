@@ -1,5 +1,15 @@
 # Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
 
+
+#bun lockfile
+bun.lockb
+air-beenbee.app/bun.lockb
+air-beenbee.locataires/bun.lockb
+air-beenbee.proprietaires/bun.lockb
+air-beenbee.proprietes/bun.lockb
+air-beenbee.reservations/bun.lockb
+
+
 # Logs
 
 logs
