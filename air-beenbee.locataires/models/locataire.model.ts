@@ -2,7 +2,7 @@ import { Sequelize, Model, DataTypes } from 'sequelize';
 import sequelizeConnection from '../db.connection';
 
 interface LocataireAttributes {
-  id_locataire: string;
+  id_locataire?: number;
   nom: string;
   prenom: string;
   username: string;
@@ -11,7 +11,7 @@ interface LocataireAttributes {
 }
 
 class Locataire extends Model<LocataireAttributes> implements LocataireAttributes {
-  public id_locataire!: string;
+  public id_locataire?: number;
   public nom!: string;
   public prenom!: string;
   public username!: string;
