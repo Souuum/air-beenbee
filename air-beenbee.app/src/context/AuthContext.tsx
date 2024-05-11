@@ -2,7 +2,8 @@
 import React, { createContext, useContext, useState } from 'react';
 
 interface User {
-    name: string;
+    prenom: string;
+    nom: string;
     type: 'locataire' | 'proprietaire';
     email: string;
     username: string;
