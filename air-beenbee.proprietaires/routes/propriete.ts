@@ -2,8 +2,8 @@ import express from 'express';
 import { getPropriete, getProprietes } from '../services/propriete.service';
 var router = express.Router();
 
-router.get('/', getProprietes);
+router.get('/getProprietes', getProprietes);
 
-router.get('/:id_propriete', getPropriete);
+router.get('/getPropriete/:id_propriete', getPropriete);
 
 export default router;

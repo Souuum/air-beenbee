@@ -8,3 +8,4 @@ export const ADD_RESERVATION = '/addReservation';
 export const DELETE_RESERVATION = '/deleteReservation';
 export const GET_RESERVATIONS = '/${id_locataire}';
 
+

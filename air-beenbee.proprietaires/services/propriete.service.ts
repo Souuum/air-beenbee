@@ -3,7 +3,6 @@ import axios from 'axios';
 import { PROPRIETE_API_URL, GET_PROPRIETES, GET_PROPRIETE } from '../constants/api.constant';
 
 export const getProprietes = async (req: Request, res: Response) => {
-    console.log('getProprietes');
     axios.get(PROPRIETE_API_URL + GET_PROPRIETES)
         .then(response => {
             res.status(200).json(response.data);
