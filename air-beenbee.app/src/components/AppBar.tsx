@@ -29,7 +29,6 @@ const AppBarComponent: React.FC = () => {
 
   const handleLogout = () => {
     setAuthState({ isAuthenticated: false, user: null });
-    localStorage.removeItem('token');
     navigate('/');
   };
 
@@ -71,7 +70,7 @@ const AppBarComponent: React.FC = () => {
         {authState.isAuthenticated ? (
           <>
             <Typography variant="subtitle1" sx={{ marginRight: 2 }}>
-              Hello, {authState.user?.name}
+              Hello, {authState.user?.username}
             </Typography>
             <Button color="inherit" onClick={handleLogout}>Logout</Button>
           </>
