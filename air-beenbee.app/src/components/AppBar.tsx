@@ -1,22 +1,60 @@
-// components/AppBarComponent.tsx
-import React from 'react';
-import { AppBar as MUIAppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
+import React, { useState, MouseEvent } from 'react';
+import { AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const AppBar: React.FC = () => {
+const AppBarComponent: React.FC = () => {
   const { authState, setAuthState } = useAuth();
   const navigate = useNavigate();
+
+  const [loginAnchorEl, setLoginAnchorEl] = useState<null | HTMLElement>(null);
+  const [registerAnchorEl, setRegisterAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleMenuLoginClick = (event: MouseEvent<HTMLElement>) => {
+    setLoginAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuRegisterClick = (event: MouseEvent<HTMLElement>) => {
+    setRegisterAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuLoginClose = () => {
+    setLoginAnchorEl(null);
+  };
+
+  const handleMenuRegisterClose = () => {
+    setRegisterAnchorEl(null);
+  };
 
   const handleLogout = () => {
     setAuthState({ isAuthenticated: false, user: null });
     localStorage.removeItem('token');
-    navigate('/login');
+    navigate('/');
+  };
+
+  const navigateToLoginLocataire = () => {
+    handleMenuLoginClose();
+    navigate('/login/locataire');
+  };
+
+  const navigateToLoginProprietaire = () => {
+    handleMenuLoginClose();
+    navigate('/login/proprietaire');
+  };
+
+  const navigateToRegisterLocataire = () => {
+    handleMenuRegisterClose();
+    navigate('/register/locataire');
+  };
+
+  const navigateToRegisterProprietaire = () => {
+    handleMenuRegisterClose();
+    navigate('/register/proprietaire');
   };
 
   return (
-    <MUIAppBar position="static" sx={{ width: '100%', mx: 'auto' }}>
+    <AppBar position="static">
       <Toolbar>
         <IconButton
           size="large"
@@ -39,13 +77,36 @@ const AppBar: React.FC = () => {
           </>
         ) : (
           <>
-            <Button color="inherit" onClick={() => navigate('/login')}>Login</Button>
-            <Button color="inherit" onClick={() => navigate('/register')}>Register</Button>
+            <Button 
+              color="inherit" 
+              onClick={handleMenuLoginClick}>Login</Button>
+            <Menu
+              anchorEl={loginAnchorEl}
+              open={Boolean(loginAnchorEl)}
+              onClose={handleMenuLoginClose}
+            >
+              <MenuItem onClick={navigateToLoginLocataire}>Locataire</MenuItem>
+              <MenuItem onClick={navigateToLoginProprietaire}>Proprietaire</MenuItem>
+            </Menu>
+            <Button
+              color="inherit"
+              onClick={handleMenuRegisterClick}
+            >
+              Register
+            </Button>
+            <Menu
+              anchorEl={registerAnchorEl}
+              open={Boolean(registerAnchorEl)}
+              onClose={handleMenuRegisterClose}
+            >
+              <MenuItem onClick={navigateToRegisterLocataire}>Locataire</MenuItem>
+              <MenuItem onClick={navigateToRegisterProprietaire}>Proprietaire</MenuItem>
+            </Menu>
           </>
         )}
       </Toolbar>
-    </MUIAppBar>
+    </AppBar>
   );
 };
 
-export default AppBar;
+export default AppBarComponent;

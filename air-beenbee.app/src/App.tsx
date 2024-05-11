@@ -6,6 +6,7 @@ import LocataireRegisterPage from './pages/LocataireRegisterPage';
 import ProprietaireRegisterPage from './pages/ProprietaireRegisterPage';
 
 import AppBar from './components/AppBar';
+import LocataireLoginPage from './pages/LocataireLoginPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -14,6 +15,7 @@ function App() {
       element: <Layout />,
       children: [
         { path: "/", element: <HomePage /> },
+        { path: "/login/locataire", element: <LocataireLoginPage />},
         { path: "/register/locataire", element: <LocataireRegisterPage /> },
         { path: "/register/proprietaire", element: <ProprietaireRegisterPage />}
       ],
