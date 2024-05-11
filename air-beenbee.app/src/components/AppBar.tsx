@@ -1,13 +1,24 @@
 // components/AppBarComponent.tsx
-import React from 'react';
-import { AppBar as MUIAppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
+import React, { useState, MouseEvent } from 'react';
+import { AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const AppBar: React.FC = () => {
+const AppBarComponent: React.FC = () => {
   const { authState, setAuthState } = useAuth();
   const navigate = useNavigate();
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  // Menu handling functions
+  const handleMenuClick = (event: MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleLogout = () => {
     setAuthState({ isAuthenticated: false, user: null });
@@ -15,8 +26,19 @@ const AppBar: React.FC = () => {
     navigate('/login');
   };
 
+  // Navigation functions for locataire and proprietaire registration
+  const navigateToRegisterLocataire = () => {
+    handleMenuClose();
+    navigate('/register/locataire');
+  };
+
+  const navigateToRegisterProprietaire = () => {
+    handleMenuClose();
+    navigate('/register/proprietaire');
+  };
+
   return (
-    <MUIAppBar position="static" sx={{ width: '100%', mx: 'auto' }}>
+    <AppBar position="static">
       <Toolbar>
         <IconButton
           size="large"
@@ -40,12 +62,26 @@ const AppBar: React.FC = () => {
         ) : (
           <>
             <Button color="inherit" onClick={() => navigate('/login')}>Login</Button>
-            <Button color="inherit" onClick={() => navigate('/register')}>Register</Button>
+            {/* Register Button with Menu */}
+            <Button
+              color="inherit"
+              onClick={handleMenuClick}
+            >
+              Register
+            </Button>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+            >
+              <MenuItem onClick={navigateToRegisterLocataire}>Locataire</MenuItem>
+              <MenuItem onClick={navigateToRegisterProprietaire}>Proprietaire</MenuItem>
+            </Menu>
           </>
         )}
       </Toolbar>
-    </MUIAppBar>
+    </AppBar>
   );
 };
 
-export default AppBar;
+export default AppBarComponent;
