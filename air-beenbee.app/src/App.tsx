@@ -2,7 +2,9 @@ import './App.css';
 import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import HomePage from './pages/HomePage';
-import RegisterPage from './pages/LocataireRegisterPage';
+import LocataireRegisterPage from './pages/LocataireRegisterPage';
+import ProprietaireRegisterPage from './pages/ProprietaireRegisterPage';
+
 import AppBar from './components/AppBar';
 
 function App() {
@@ -12,7 +14,8 @@ function App() {
       element: <Layout />,
       children: [
         { path: "/", element: <HomePage /> },
-        { path: "/register/locataire", element: <RegisterPage /> },
+        { path: "/register/locataire", element: <LocataireRegisterPage /> },
+        { path: "/register/proprietaire", element: <ProprietaireRegisterPage />}
       ],
     }
   ]);

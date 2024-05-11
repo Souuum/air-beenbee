@@ -6,6 +6,6 @@ router.post('/addReservation/:id_propriete', );
 
 router.post('/deleteReservation/:id_propriete', );
 
-router.get('/getReservations/:id_locataire', );
+router.get('/:id_locataire', );
 
 export default router;
