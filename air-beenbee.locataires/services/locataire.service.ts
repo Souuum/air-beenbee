@@ -24,12 +24,13 @@ export const updateLocataire = async (req: Request, res: Response) => {
         if (!locataire) {
             return res.status(404).json({ message: 'Locataire not found' });
         }
-        locataire.nom = nom;
-        locataire.prenom = prenom;
-        locataire.username = username;
-        locataire.email = email;
-        locataire.password = password;
-        await locataire.save();
+        const locataireToUpdate = new Locataire();
+        locataireToUpdate.nom = nom;
+        locataireToUpdate.prenom = prenom;
+        locataireToUpdate.username = username;
+        locataireToUpdate.email = email;
+        locataireToUpdate.password = password;
+        await locataire.update(locataireToUpdate);
         return res.status(200).json(locataire);
     }
     catch (error) {
