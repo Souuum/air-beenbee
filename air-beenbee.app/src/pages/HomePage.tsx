@@ -1,3 +1,4 @@
+import AppBar from "../components/AppBar";
 
 
 
@@ -7,8 +8,8 @@ const HomePage = ()  => {
   
 
   return (
-
-    <div className=" flex justify-center w-dvw ">
+    
+    <div className="text-center">
         <h1>Home Page</h1>
     </div>
 
