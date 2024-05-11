@@ -23,8 +23,8 @@ app.use(express.json());
 
 
 // Initialize routes
+app.use('/', locataireRouter);
 app.use('/auth', authRouter);
-app.use('/locataire', locataireRouter);
 app.use('/reservation', reservationRouter);
 app.use('/propriete', proprieteRouter);
 
