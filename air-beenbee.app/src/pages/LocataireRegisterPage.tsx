@@ -1,8 +1,12 @@
 
+import { useNavigate } from 'react-router-dom';
 import { FormField, Form} from "../components/Form";
+import AppBar from '../components/AppBar';
 
 
 const RegisterPage = ()  => {
+
+  const navigate = useNavigate();
 
   const formStructure: FormField[] = [
     { name: 'prenom', label: 'Prénom', type: 'text' },
@@ -23,6 +27,9 @@ const RegisterPage = ()  => {
       }).then((response) => {
         if (response.ok) {
           console.log('Inscription réussie');
+          //redirect to login page
+          navigate('/');
+
         } else {
           console.log('Inscription échouée');
         }
@@ -31,11 +38,13 @@ const RegisterPage = ()  => {
 
     return (
   
-      <div className="">
-        <h1> Inscription</h1>
-          <div className="w-max">
+      <div>
+      <div className="flex flex-col w-full justify-center">
+          <div className="flex w-full justify-center">
+
           <Form formStructure={formStructure} onSubmit={handleFormSubmit} />
           </div>
+      </div>
       </div>
   
     )
