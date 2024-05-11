@@ -16,7 +16,7 @@ const RegisterPage = ()  => {
 
     const handleFormSubmit = async (formData: { [key: string]: any }) => {
       //send data to backend
-      await fetch('http://localhost:3003/auth/register', {
+      await fetch('http://localhost:3002/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

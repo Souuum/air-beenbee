@@ -1,7 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { TextField, Button, Select, MenuItem, InputLabel, FormControl, SelectChangeEvent } from '@mui/material';
 
-// Define types for form structure
 interface Option {
   value: string | number;
   label: string;
@@ -16,6 +15,7 @@ export interface FormField {
 
 interface DynamicFormProps {
   formStructure: FormField[];
+  label: string;
   onSubmit: (formData: { [key: string]: any }) => void;
 }
 
@@ -81,7 +81,7 @@ const renderFormField = (
   }
 };
 
-export const Form: React.FC<DynamicFormProps> = ({ formStructure, onSubmit }) => {
+export const Form: React.FC<DynamicFormProps> = ({ formStructure, label, onSubmit }) => {
   const [formValues, setFormValues] = useState<{ [key: string]: any }>({});
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement> | SelectChangeEvent<HTMLInputElement>) => {
@@ -100,7 +100,7 @@ export const Form: React.FC<DynamicFormProps> = ({ formStructure, onSubmit }) =>
     onSubmit={handleSubmit}>
       {formStructure.map((field, index) => renderFormField(field, index, handleChange, formValues))}
       <Button type="submit" variant="contained" color="warning">
-        S'inscrire
+        {label}
       </Button>
     </form>
   );
