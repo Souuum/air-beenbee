@@ -7,18 +7,22 @@ import locataireRouter from './routes/locataire';
 import reservationRouter from './routes/reservation';
 import proprieteRouter from './routes/propriete';
 
+const cors = require('cors');
 const app = express();
 const port = 3003;
 
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World! from air-beenbee.locataires')
-  })
-  
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
+  res.send('Hello World! from air-beenbee.locataires')
+})
 
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+
+app.use(cors({
+  origin: 'http://localhost:5173'
+}));
 app.use(express.json());
 
 
