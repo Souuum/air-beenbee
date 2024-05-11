@@ -1,7 +1,6 @@
 
 import { useNavigate } from 'react-router-dom';
 import { FormField, Form} from "../components/Form";
-import AppBar from '../components/AppBar';
 
 
 const RegisterPage = ()  => {
