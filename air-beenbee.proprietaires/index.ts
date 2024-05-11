@@ -8,10 +8,15 @@ import proprietaireRouter from './routes/proprietaire';
 import reservationRouter from './routes/reservation';
 import proprieteRouter from './routes/propriete';
 
+const cors = require("cors")
 const app = express();
 const port = 3002;
 
 app.use(express.json());
+
+app.use(cors({
+  origin: 'http://localhost:5173'
+}));
 
 // Initialize routes
 app.use('/auth', authRouter);
