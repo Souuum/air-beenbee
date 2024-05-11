@@ -1,4 +1,3 @@
-// components/AppBarComponent.tsx
 import React, { useState, MouseEvent } from 'react';
 import { AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -9,31 +8,48 @@ const AppBarComponent: React.FC = () => {
   const { authState, setAuthState } = useAuth();
   const navigate = useNavigate();
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [loginAnchorEl, setLoginAnchorEl] = useState<null | HTMLElement>(null);
+  const [registerAnchorEl, setRegisterAnchorEl] = useState<null | HTMLElement>(null);
 
-  // Menu handling functions
-  const handleMenuClick = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+  const handleMenuLoginClick = (event: MouseEvent<HTMLElement>) => {
+    setLoginAnchorEl(event.currentTarget);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
+  const handleMenuRegisterClick = (event: MouseEvent<HTMLElement>) => {
+    setRegisterAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuLoginClose = () => {
+    setLoginAnchorEl(null);
+  };
+
+  const handleMenuRegisterClose = () => {
+    setRegisterAnchorEl(null);
   };
 
   const handleLogout = () => {
     setAuthState({ isAuthenticated: false, user: null });
     localStorage.removeItem('token');
-    navigate('/login');
+    navigate('/');
   };
 
-  // Navigation functions for locataire and proprietaire registration
+  const navigateToLoginLocataire = () => {
+    handleMenuLoginClose();
+    navigate('/login/locataire');
+  };
+
+  const navigateToLoginProprietaire = () => {
+    handleMenuLoginClose();
+    navigate('/login/proprietaire');
+  };
+
   const navigateToRegisterLocataire = () => {
-    handleMenuClose();
+    handleMenuRegisterClose();
     navigate('/register/locataire');
   };
 
   const navigateToRegisterProprietaire = () => {
-    handleMenuClose();
+    handleMenuRegisterClose();
     navigate('/register/proprietaire');
   };
 
@@ -61,18 +77,27 @@ const AppBarComponent: React.FC = () => {
           </>
         ) : (
           <>
-            <Button color="inherit" onClick={() => navigate('/login')}>Login</Button>
-            {/* Register Button with Menu */}
+            <Button 
+              color="inherit" 
+              onClick={handleMenuLoginClick}>Login</Button>
+            <Menu
+              anchorEl={loginAnchorEl}
+              open={Boolean(loginAnchorEl)}
+              onClose={handleMenuLoginClose}
+            >
+              <MenuItem onClick={navigateToLoginLocataire}>Locataire</MenuItem>
+              <MenuItem onClick={navigateToLoginProprietaire}>Proprietaire</MenuItem>
+            </Menu>
             <Button
               color="inherit"
-              onClick={handleMenuClick}
+              onClick={handleMenuRegisterClick}
             >
               Register
             </Button>
             <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
+              anchorEl={registerAnchorEl}
+              open={Boolean(registerAnchorEl)}
+              onClose={handleMenuRegisterClose}
             >
               <MenuItem onClick={navigateToRegisterLocataire}>Locataire</MenuItem>
               <MenuItem onClick={navigateToRegisterProprietaire}>Proprietaire</MenuItem>

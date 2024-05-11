@@ -41,7 +41,7 @@ const RegisterPage = ()  => {
       <div className="flex flex-col w-full justify-center">
           <div className="flex w-full justify-center">
 
-          <Form formStructure={formStructure} onSubmit={handleFormSubmit} />
+          <Form formStructure={formStructure} label="S'inscrire" onSubmit={handleFormSubmit} />
           </div>
       </div>
       </div>
