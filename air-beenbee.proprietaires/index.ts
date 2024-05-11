@@ -16,8 +16,8 @@ app.use(express.json());
 // Initialize routes
 app.use('/auth', authRouter);
 app.use('/proprietaire', proprietaireRouter);
-//app.use('/reservation', reservationRouter);
-//app.use('/propriete', proprieteRouter);
+app.use('/reservation', reservationRouter);
+app.use('/propriete', proprieteRouter);
 
 
 app.get('/', (req: Request, res: Response) => {

@@ -3,8 +3,8 @@ import Proprietaire from "../models/Proprietaire.model";
 
 export const getProprietaire = async (req: Request, res: Response) => {
     try {
-        const { id_proprietaires } = req.params;
-        const proprietaire = await Proprietaire.findByPk(id_proprietaires);
+        const { id } = req.params;
+        const proprietaire = await Proprietaire.findByPk(id);
         if (!proprietaire) {
             return res.status(404).json({ message: 'Proprietaire not found' });
         }
