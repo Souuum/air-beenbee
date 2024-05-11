@@ -1,8 +1,8 @@
 import React, { useState, MouseEvent } from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Toolbar, Typography, Button, Menu, MenuItem } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import logoImage from '../assets/logo.png'; 
 
 const AppBarComponent: React.FC = () => {
   const { authState, setAuthState } = useAuth();
@@ -54,19 +54,12 @@ const AppBarComponent: React.FC = () => {
 
   return (
     <AppBar position="static">
-      <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          App Name
-        </Typography>
+      <Toolbar className='flex justify-between'>
+        <Button>
+        <img src={logoImage} alt="Air Bee n Bee Logo" style={{ height: '50px' }} /> 
+        </Button>
+        <div className='flex justify-end'>
+
         {authState.isAuthenticated ? (
           <>
             <Typography variant="subtitle1" sx={{ marginRight: 2 }}>
@@ -103,6 +96,7 @@ const AppBarComponent: React.FC = () => {
             </Menu>
           </>
         )}
+        </div>
       </Toolbar>
     </AppBar>
   );
