@@ -8,6 +8,12 @@ interface ProprieteAttributes {
     surface: number;
     prix: number;
     description: string;
+    chambre: number;
+    lit: number;
+    salle_de_bain: number;
+    cuisine: number;
+    piscine: boolean;
+    wifi: boolean;
     id_proprietaire: number;
 }
 
@@ -18,6 +24,12 @@ class Propriete extends Model<ProprieteAttributes> implements ProprieteAttribute
     surface!: number;
     prix!: number;
     description!: string;
+    chambre!: number;
+    lit!: number;
+    salle_de_bain!: number;
+    cuisine!: number;
+    piscine!: boolean;
+    wifi!: boolean;
     id_proprietaire!: number;
 }
 
@@ -42,6 +54,24 @@ Propriete.init(
     },
     description: {
     type: DataTypes.STRING,
+    },    
+    chambre: {
+    type: DataTypes.INTEGER,
+    },
+    lit: {
+    type: DataTypes.INTEGER,
+    },
+    salle_de_bain: {
+    type: DataTypes.INTEGER,
+    },
+    cuisine: {
+    type: DataTypes.INTEGER,
+    },
+    piscine: {
+    type: DataTypes.BOOLEAN,
+    },
+    wifi: {
+    type: DataTypes.BOOLEAN,
     },
     id_proprietaire: {
     type: DataTypes.INTEGER,

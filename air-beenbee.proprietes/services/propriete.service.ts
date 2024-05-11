@@ -29,7 +29,7 @@ export const getProprietes = async (req: Request, res: Response) => {
 
 export const createPropriete = async (req: Request, res: Response) => {
     try {
-        const { type, ville, surface, prix, description, id_proprietaire } = req.body;
+        const { type, ville, surface, prix, description, chambre, lit, salle_de_bain, cuisine, wifi, piscine, id_proprietaire } = req.body;
 
         const propriete = await Propriete.create({
             type,
@@ -37,6 +37,12 @@ export const createPropriete = async (req: Request, res: Response) => {
             surface,
             prix,
             description,
+            chambre,
+            lit,
+            salle_de_bain,
+            cuisine,
+            wifi,
+            piscine,
             id_proprietaire
         });
         return res.status(201).json(propriete);
