@@ -1,26 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import HomePage from './pages/HomePage.tsx'
-import './index.css'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App/>,
-    
-  },
-  {path: "/about",
-  element: <HomePage/>,
-}
-]);
+import './index.css'
+import App from './App.tsx';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme.ts';
+
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider theme={theme}>
+      <App/>
+    </ThemeProvider>
   </React.StrictMode>,
 )

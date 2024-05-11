@@ -8,7 +8,7 @@ const HomePage = ()  => {
 
   return (
 
-    <div>
+    <div className=" flex justify-center w-dvw ">
         <h1>Home Page</h1>
     </div>
 
