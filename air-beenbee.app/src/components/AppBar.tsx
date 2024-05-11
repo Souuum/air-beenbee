@@ -55,7 +55,9 @@ const AppBarComponent: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar className='flex justify-between'>
-        <Button>
+        <Button
+          onClick={() => navigate('/')}
+        >
         <img src={logoImage} alt="Air Bee n Bee Logo" style={{ height: '50px' }} /> 
         </Button>
         <div className='flex justify-end'>
