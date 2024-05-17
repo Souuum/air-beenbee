@@ -1,14 +1,14 @@
-import './App.css';
-import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import HomePage from './pages/HomePage';
-import LocataireRegisterPage from './pages/LocataireRegisterPage';
-import ProprietaireRegisterPage from './pages/ProprietaireRegisterPage';
-import LocataireLoginPage from './pages/LocataireLoginPage';
-import PropretaireLoginPage from './pages/ProprietaireLoginPage';
+import "./App.css";
+import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import HomePage from "./pages/HomePage";
+import LocataireRegisterPage from "./pages/LocataireRegisterPage";
+import ProprietaireRegisterPage from "./pages/ProprietaireRegisterPage";
+import LocataireLoginPage from "./pages/LocataireLoginPage";
+import PropretaireLoginPage from "./pages/ProprietaireLoginPage";
+import AddProprietePage from "./pages/AddProprietePage";
 
-import AppBar from './components/AppBar';
-
+import AppBar from "./components/AppBar";
 
 function App() {
   const router = createBrowserRouter([
@@ -17,12 +17,16 @@ function App() {
       element: <Layout />,
       children: [
         { path: "/", element: <HomePage /> },
-        { path: "/login/locataire", element: <LocataireLoginPage />},
-        { path: "/login/proprietaire", element: <PropretaireLoginPage />},
+        { path: "/login/locataire", element: <LocataireLoginPage /> },
+        { path: "/login/proprietaire", element: <PropretaireLoginPage /> },
         { path: "/register/locataire", element: <LocataireRegisterPage /> },
-        { path: "/register/proprietaire", element: <ProprietaireRegisterPage />}
+        {
+          path: "/register/proprietaire",
+          element: <ProprietaireRegisterPage />,
+        },
+        { path: "/addpropriete", element: <AddProprietePage /> },
       ],
-    }
+    },
   ]);
 
   return (

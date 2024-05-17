@@ -1,9 +1,7 @@
 import { useAuth } from "../context/AuthContext";
 
-
-const HomePage = ()  => {
-  
-  const {authState} = useAuth();
+const HomePage = () => {
+  const { authState } = useAuth();
 
   const { isAuthenticated, user } = authState;
 
@@ -14,7 +12,9 @@ const HomePage = ()  => {
       <h1>Home Page</h1>
       {isAuthenticated ? (
         <div>
-          <h2>Bienvenue {user?.prenom} {user?.nom}</h2>
+          <h2>
+            Bienvenue {user?.prenom} {user?.nom}
+          </h2>
           <p>Vous êtes connecté en tant que {user?.role}</p>
         </div>
       ) : (
@@ -22,7 +22,6 @@ const HomePage = ()  => {
       )}
     </div>
   );
-
-}
+};
 
 export default HomePage;
