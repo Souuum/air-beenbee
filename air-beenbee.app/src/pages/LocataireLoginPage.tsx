@@ -30,6 +30,7 @@ const LoginPage = () => {
               isAuthenticated: true,
               user: userData,
             });
+            localStorage.setItem('user', JSON.stringify(userData));
             navigate('/');
             console.log('Connexion réussie');
           } else {

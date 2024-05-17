@@ -29,6 +29,7 @@ const AppBarComponent: React.FC = () => {
 
   const handleLogout = () => {
     setAuthState({ isAuthenticated: false, user: null });
+    localStorage.removeItem('user');
     navigate('/');
   };
 
