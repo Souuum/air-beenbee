@@ -77,7 +77,7 @@ export const updateReservation = async (req: Request, res: Response) => {
 
         reservation.type = type;
 
-        await reservation.save();
+        await reservation.update(reservation);
         return res.status(200).json(reservation);
     } catch (error) {
         console.error('Error during updateReservation:', error);

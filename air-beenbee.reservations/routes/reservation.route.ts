@@ -18,7 +18,7 @@ router.get('/:id', getReservation);
 
 router.post('/createReservation', createReservation);
 
-router.put('/updateReservation/:id_Reservation', updateReservation);
+router.put('/updateReservation/:id_reservation', updateReservation);
 
 router.delete('/deleteReservation/:id_reservation', deleteReservation);
 
