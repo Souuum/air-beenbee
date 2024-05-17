@@ -15,7 +15,7 @@ router.get('/:id_propriete', getPropriete);
 
 router.post('/createPropriete', createPropriete);
 
-router.put('/updatePropriete/:id_propriete', updatePropriete);
+router.post('/updatePropriete/:id_propriete', updatePropriete);
 
 router.delete('/deletePropriete/:id_propriete', deletePropriete);
 
