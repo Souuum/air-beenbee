@@ -1,5 +1,6 @@
+import { Propriete, ProprieteCard } from "../components/ProprieteCard";
 import { useAuth } from "../context/AuthContext";
-import { ProprieteCard } from "../components/proprieteCard";
+import { useEffect, useState } from "react";
 
 const SearchProprietePage = ()  => {
   
@@ -9,17 +10,35 @@ const SearchProprietePage = ()  => {
 
   console.log(user);
 
-  const proprietes :  = []
+  const [proprietes,setProprietes] = useState<Propriete[]>([]);
 
+  const getProprietes = async () => {
+    try {
+      const response = await fetch('http://localhost:3002/propriete');
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setProprietes(data);
+      }
+    } catch (error) {
+      console.error('An error occurred while fetching proprietes:', error);
+    }
+  }
 
+  useEffect(() => {
+    getProprietes();
+  }, []);
 
   return (
     <div>
-      <h1>Home Page</h1>
+      <h1>Search page</h1>
       {isAuthenticated ? (
         <div>
-          <h2>Bienvenue {user?.prenom} {user?.nom}</h2>
-          <p>Vous êtes connecté en tant que {user?.role}</p>
+            <div className="grid grid-cols-3 gap-4">
+                {proprietes.map((propriete) => (
+                <ProprieteCard key={propriete.id_propriete} propriete={propriete} />
+                ))}
+            </div>
         </div>
       ) : (
         <p>Vous n'êtes pas connecté</p>
