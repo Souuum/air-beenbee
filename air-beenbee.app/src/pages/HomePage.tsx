@@ -22,11 +22,27 @@ const HomePage = ()  => {
           <Button 
           variant="contained" 
           color="primary" 
-          href="/ajouter-propriete"
           onClick={() => navigate('/addpropriete')}
-          >Ajouter une propriété</Button>
+          >
+            Ajouter une propriété
+          </Button>
         </div>
-      ) : (
+      ) : isAuthenticated && user?.role==="locataire" ? (
+        <div>
+          <h2>Bienvenue {user?.prenom} {user?.nom}</h2>
+          <p>Vous êtes connecté en tant que {user?.role}</p>
+          <Button
+          variant="contained"
+          color="primary"
+          onClick={() => navigate('/search')}
+          >
+            Rechercher une propriété
+            </Button>
+        </div>
+      
+      )
+      :
+      (
         <p>Vous n'êtes pas connecté</p>
       )}
     </div>

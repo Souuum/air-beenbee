@@ -14,7 +14,7 @@ const SearchProprietePage = ()  => {
 
   const getProprietes = async () => {
     try {
-      const response = await fetch('http://localhost:3002/propriete');
+      const response = await fetch('http://localhost:3001');
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -27,6 +27,7 @@ const SearchProprietePage = ()  => {
 
   useEffect(() => {
     getProprietes();
+    console.log(proprietes)
   }, []);
 
   return (
