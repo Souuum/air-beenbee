@@ -35,15 +35,16 @@ const RegisterPage = ()  => {
     };
 
     return (
-  
-      <div>
-      <div className="flex flex-col w-full justify-center">
-          <div className="flex w-full justify-center">
-
+      <div className="flex justify-center items-center h-screen">
+      <div className="flex flex-col w-full max-w-md justify-center">
+        <div className="flex w-full justify-center">
+          <h1>Inscription propriétaire</h1>
+        </div>
+        <div className="flex w-full justify-center">
           <Form formStructure={formStructure} label="S'inscrire" onSubmit={handleFormSubmit} />
-          </div>
+        </div>
       </div>
-      </div>
+    </div>
   
     )
   }
