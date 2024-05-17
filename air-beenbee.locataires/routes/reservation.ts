@@ -1,11 +1,11 @@
 import express from 'express';
-import {  } from '../services/reservation.service';
+import { addReservation, getReservations, deleteReservation } from '../services/reservation.service';
 var router = express.Router();
 
-router.post('/addReservation/:id_propriete', );
+router.post('/addReservation', addReservation);
 
-router.post('/deleteReservation/:id_propriete', );
+router.delete('/deleteReservation/:id_reservation', deleteReservation);
 
-router.get('/:id_locataire', );
+router.get('/:id_locataire', getReservations);
 
 export default router;
