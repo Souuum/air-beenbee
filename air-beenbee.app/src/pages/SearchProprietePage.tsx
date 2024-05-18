@@ -7,7 +7,6 @@ import {
   MenuItem,
   Select,
   TextField,
-  Box,
   FormControl,
   InputLabel,
 } from '@mui/material';
@@ -76,10 +75,10 @@ const SearchProprietePage = () => {
 
   return (
     <div>
-      <h1>Search page</h1>
+      <h1>Rechercer une propriété</h1>
       {isAuthenticated ? (
         <div>
-          <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+          <div className='flex' >
             <FormControl fullWidth>
               <InputLabel id="select-ville-label">Ville</InputLabel>
               <Select
@@ -130,11 +129,11 @@ const SearchProprietePage = () => {
             <Button variant="contained" onClick={applyFilters}>
               Apply Filters
             </Button>
-          </Box>
-          <div className="grid grid-cols-3 gap-4">
+          </div>
+          <div className="grid grid-cols-3 gap-4 ">
             {proprietes.length !== 0 ? (
               proprietes.map((propriete) => (
-                <ProprieteCard key={propriete.id_propriete} propriete={propriete} />
+                <ProprieteCard key={propriete.id_propriete} propriete={propriete} link />
               ))
             ) : (
               <p>No results found</p>
