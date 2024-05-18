@@ -1,3 +1,4 @@
+
 import './App.css';
 import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
@@ -9,8 +10,7 @@ import PropretaireLoginPage from './pages/ProprietaireLoginPage';
 import SearchProprietePage from './pages/SearchProprietePage';
 import ReservePage from './pages/ReservePage';
 
-import AppBar from './components/AppBar';
-
+import AppBar from "./components/AppBar";
 
 function App() {
   const router = createBrowserRouter([
@@ -19,14 +19,14 @@ function App() {
       element: <Layout />,
       children: [
         { path: "/", element: <HomePage /> },
-        { path: "/login/locataire", element: <LocataireLoginPage />},
-        { path: "/login/proprietaire", element: <PropretaireLoginPage />},
+        { path: "/login/locataire", element: <LocataireLoginPage /> },
+        { path: "/login/proprietaire", element: <PropretaireLoginPage /> },
         { path: "/register/locataire", element: <LocataireRegisterPage /> },
         { path: "/register/proprietaire", element: <ProprietaireRegisterPage />},
         { path: "/search", element: <SearchProprietePage />},
         { path: "/reservation/:id_propriete", element: <ReservePage />}
       ],
-    }
+    },
   ]);
 
   return (

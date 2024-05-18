@@ -17,7 +17,9 @@ const HomePage = ()  => {
       <h1>Home Page</h1>
       {isAuthenticated && user?.role==="proprietaire" ? (
         <div>
-          <h2>Bienvenue {user?.prenom} {user?.nom}</h2>
+          <h2>
+            Bienvenue {user?.prenom} {user?.nom}
+          </h2>
           <p>Vous êtes connecté en tant que {user?.role}</p>
           <Button 
           variant="contained" 
@@ -47,7 +49,6 @@ const HomePage = ()  => {
       )}
     </div>
   );
-
-}
+};
 
 export default HomePage;
