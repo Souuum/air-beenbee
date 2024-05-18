@@ -1,5 +1,6 @@
 import type { Request, Response } from 'express';
 import Propriete from "../models/propriete.model";
+import { Op } from 'sequelize';
 
 export const getPropriete = async (req: Request, res: Response) => {
     try {
@@ -62,6 +63,55 @@ export const getProprietesByVille = async (req: Request, res: Response) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 }
+
+export const getProprietesInPriceRange = async (req: Request, res: Response) => {
+    try {
+        const { min, max } = req.params;
+        const proprietes = await Propriete.findAll({ where: { prix: { [Op.between]: [min, max] } } });
+        return res.status(200).json(proprietes);
+    }
+    catch (error) {
+        console.error('Error during getProprietesInPriceRange:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+export const searchProprietes = async (req: Request, res: Response) => {
+    try {
+        const { ville, type, minPrice, maxPrice } = req.query;
+
+        const whereClause: any = {};
+
+        if (ville) {
+            whereClause.ville = ville;
+        }
+
+        if (type) {
+            whereClause.type = type;
+        }
+
+        if (minPrice && maxPrice) {
+            whereClause.prix = {
+                [Op.between]: [Number(minPrice), Number(maxPrice)]
+            };
+        } else if (minPrice) {
+            whereClause.prix = {
+                [Op.gte]: Number(minPrice)
+            };
+        } else if (maxPrice) {
+            whereClause.prix = {
+                [Op.lte]: Number(maxPrice)
+            };
+        }
+
+        const proprietes = await Propriete.findAll({ where: whereClause });
+
+        return res.status(200).json(proprietes);
+    } catch (error) {
+        console.error('Error during searchProprietes:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+};
 
 export const createPropriete = async (req: Request, res: Response) => {
     try {
