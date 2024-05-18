@@ -2,6 +2,7 @@ import { ProprieteCard } from "../components/ProprieteCard";
 import { useAuth } from "../context/AuthContext";
 import { useEffect, useState } from "react";
 import type { Propriete } from "../types";
+import { set } from "date-fns";
 
 const SearchProprietePage = ()  => {
   
@@ -12,6 +13,8 @@ const SearchProprietePage = ()  => {
   console.log(user);
 
   const [proprietes,setProprietes] = useState<Propriete[]>([]);
+  const [villes, setVilles] = useState<string[]>([]);
+
 
   const getProprietes = async () => {
     try {
@@ -19,6 +22,19 @@ const SearchProprietePage = ()  => {
       if (response.ok) {
         const data = await response.json();
         console.log(data);
+        setProprietes(data);
+        setVilles(data.map((p : Propriete) => p.ville));
+      }
+    } catch (error) {
+      console.error('An error occurred while fetching proprietes:', error);
+    }
+  }
+
+  const getProprietesByVille = async (ville: string) => {
+    try {
+      const response = await fetch(`http://localhost:3001/${ville}`);
+      if (response.ok) {
+        const data = await response.json();
         setProprietes(data);
       }
     } catch (error) {
