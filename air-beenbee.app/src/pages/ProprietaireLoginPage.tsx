@@ -26,6 +26,7 @@ const LoginPage = () => {
           if (response.ok) {
             const userData = await response.json();
             userData.role = 'proprietaire';
+            userData.id=userData.id_proprietaires;
             setAuthState({
               isAuthenticated: true,
               user: userData,

@@ -17,7 +17,7 @@ const Reservation = () => {
 
     const getPropriete = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/propriete/${id_propriete}`);
+            const response = await fetch(`http://localhost:3001/${id_propriete}`);
             if (response.ok) {
                 const data = await response.json();
                 setPropriete(data);
@@ -29,37 +29,41 @@ const Reservation = () => {
 
     useEffect(() => {
         getPropriete();
-    }, [id_propriete]);
+    }, []);
 
     const sendReservationRequest = async () => {
-        try {
-            const response = await fetch('http://localhost:3000/reservation', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    id_propriete,
-                    id_locataire: user?.id,
-                    date_debut: startDate,
-                    date_fin: endDate,
-                }),
-            });
-
-            if (response.ok) {
-                console.log('Reservation request sent');
-            } else {
-                console.log('Reservation request failed');
+        if(user && user.role === "locataire"){
+            try {
+                const response = await fetch('http://localhost:3000/createReservation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        type: 'en cours',
+                        id_propriete,
+                        id_locataire: user.id,
+                        date_debut: startDate,
+                        date_fin: endDate,
+                    }),
+                });
+    
+                if (response.ok) {
+                    console.log('Reservation request sent');
+                } else {
+                    console.log('Reservation request failed');
+                }
+            } catch (error) {
+                console.error('An error occurred while sending reservation request:', error);
             }
-        } catch (error) {
-            console.error('An error occurred while sending reservation request:', error);
         }
+
     }
 
     const handleReservation = () => {
         if (startDate && endDate) {
             if (startDate < endDate) {
-
+                sendReservationRequest();
                 console.log('Reservation request sent');
             } else {
                 console.log('Invalid dates');
@@ -69,10 +73,14 @@ const Reservation = () => {
 
     return (
         <div>
-            <h1>Réserver la propriété {id_propriete}</h1>
+            <h1>Réserver la propriété {propriete?.id_propriete}</h1>
             {isAuthenticated && user?.role === "locataire" ? (
                 <div>
                     <h1>Reservation Page</h1>
+                    <h2>Propriété {propriete?.id_propriete}</h2>
+                    <h3>{propriete?.description}</h3>
+                    <p>{propriete?.description}</p>
+
                     <div className="flex ">
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DatePicker
