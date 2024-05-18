@@ -1,10 +1,19 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, MouseEvent, useEffect } from 'react';
 import { AppBar, Toolbar, Typography, Button, Menu, MenuItem } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import logoImage from '../assets/logo.png'; 
 
 const AppBarComponent: React.FC = () => {
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      setAuthState({ isAuthenticated: true, user: JSON.parse(user) });
+    }
+  }, []);
+
+
   const { authState, setAuthState } = useAuth();
   const navigate = useNavigate();
 
@@ -29,6 +38,7 @@ const AppBarComponent: React.FC = () => {
 
   const handleLogout = () => {
     setAuthState({ isAuthenticated: false, user: null });
+    localStorage.removeItem('user');
     navigate('/');
   };
 

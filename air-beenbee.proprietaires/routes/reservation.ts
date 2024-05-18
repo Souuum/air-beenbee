@@ -1,11 +1,18 @@
 import express from 'express';
-import {  } from '../services/reservation.service';
+import { 
+    updateReservation, 
+    getReservationsByIdLocataire, 
+    deleteReservation,
+    getReservation
+ } from '../services/reservation.service';
 var router = express.Router();
 
-router.post('/acceptReservation/:id_propriete', );
+router.put('/updateReservation/:id_reservation', updateReservation);
 
-router.post('/declineReservation/:id_propriete', );
+router.get('/getReservationsByIdLocataire/:id_locataire', getReservationsByIdLocataire);
 
-router.get('/getReservations/:id_locataire', );
+router.get('/:id_reservation', getReservation);
+
+router.delete('/deleteReservation/:id_reservation', deleteReservation);
 
 export default router;
