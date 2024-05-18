@@ -1,7 +1,10 @@
 import express from 'express';
 import { 
     getPropriete, 
-    getProprietes, 
+    getProprietes,
+    getProprietesByProprietaire,
+    getProprietesByType,
+    getProprietesByVille, 
     createPropriete, 
     updatePropriete, 
     deletePropriete 
@@ -13,9 +16,15 @@ router.get('/', getProprietes);
 
 router.get('/:id_propriete', getPropriete);
 
+router.get('/proprietaire/:id_proprietaire', getProprietesByProprietaire);
+
+router.get('/type/:type', getProprietesByType);
+
+router.get('/ville/:ville', getProprietesByVille);
+
 router.post('/createPropriete', createPropriete);
 
-router.put('/updatePropriete/:id_propriete', updatePropriete);
+router.post('/updatePropriete/:id_propriete', updatePropriete);
 
 router.delete('/deletePropriete/:id_propriete', deletePropriete);
 

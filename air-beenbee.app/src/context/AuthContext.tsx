@@ -1,13 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-interface User {
-    prenom: string;
-    nom: string;
-    role: 'locataire' | 'proprietaire';
-    email: string;
-    username: string;
-    id: number;
-}
+import type { User } from '../types';
 
 interface AuthState {
   isAuthenticated: boolean;

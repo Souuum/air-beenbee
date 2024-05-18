@@ -4,7 +4,7 @@ export const GET_PROPRIETE = '/${id_propriete}';
 
 
 export const RESERVATION_API_URL = 'http://localhost:3000';
-export const ADD_RESERVATION = '/addReservation';
-export const DELETE_RESERVATION = '/deleteReservation';
-export const GET_RESERVATIONS = '/${id_locataire}';
+export const CREATE_RESERVATION = '/createReservation';
+export const DELETE_RESERVATION = '/deleteReservation/${id_reservation}';
+export const GET_RESERVATIONS = '/getReservationsByIdLocataire/${id_locataire}';
 
