@@ -11,6 +11,7 @@ import SearchProprietePage from './pages/SearchProprietePage';
 import ReservePage from './pages/ReservePage';
 
 import AppBar from "./components/AppBar";
+import AddProprietePage from './pages/AddProprietePage';
 
 function App() {
   const router = createBrowserRouter([
@@ -24,7 +25,8 @@ function App() {
         { path: "/register/locataire", element: <LocataireRegisterPage /> },
         { path: "/register/proprietaire", element: <ProprietaireRegisterPage />},
         { path: "/search", element: <SearchProprietePage />},
-        { path: "/reservation/:id_propriete", element: <ReservePage />}
+        { path: "/reservation/:id_propriete", element: <ReservePage />},
+        { path: "/addpropriete", element: <AddProprietePage />}
       ],
     },
   ]);

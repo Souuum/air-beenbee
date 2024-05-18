@@ -5,9 +5,7 @@ const AddProprietePage = () => {
   const { authState } = useAuth();
 
   const { isAuthenticated, user } = authState;
-//TODO 
-// Récupérer les ID propriété et propriétaire
-// Créer le bouton dans Home pour rediriger sur cette page
+
   const formStructure: FormField[] = [
     { name: "ville", label: "Ville", type: "text" },
     { name: "surface", label: "Surface", type: "number" },
@@ -23,25 +21,32 @@ const AddProprietePage = () => {
   ];
 
   const handleFormSubmit = async (formData: { [key: string]: any }) => {
-    //send data to backend
-    await fetch("http://localhost:3001/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-  };
+    if(user && user.role === "proprietaire"){
+      try {
+        const response = await fetch("http://localhost:3001/createPropriete", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...formData, id_proprietaire: user?.id }),
+        });
+  
+        if (response.ok) {
+          console.log("Propriété ajoutée");
+        } else {
+          console.log("Erreur lors de l'ajout de la propriété");
+        }
+      } catch (error) {
+        console.error("Erreur lors de l'ajout de la propriété:", error);
+      }
+    }
+
+  }
+
+
   return (
     <div>
       <h1>Add Page</h1>
-      <div className="flex w-full justify-center">
-        <Form
-          formStructure={formStructure}
-          label="Ajouter"
-          onSubmit={handleFormSubmit}
-        />
-      </div>
       {isAuthenticated && user?.role === "proprietaire" ? (
         <div>
           <div className="flex w-full justify-center">
