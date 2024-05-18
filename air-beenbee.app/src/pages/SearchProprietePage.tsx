@@ -136,7 +136,7 @@ const SearchProprietePage = () => {
                 <ProprieteCard key={propriete.id_propriete} propriete={propriete} link />
               ))
             ) : (
-              <p>No results found</p>
+              <p>Pas de résultat</p>
             )}
           </div>
         </div>
