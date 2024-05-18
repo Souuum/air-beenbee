@@ -1,6 +1,7 @@
-import { Propriete, ProprieteCard } from "../components/ProprieteCard";
+import { ProprieteCard } from "../components/ProprieteCard";
 import { useAuth } from "../context/AuthContext";
 import { useEffect, useState } from "react";
+import type { Propriete } from "../types";
 
 const SearchProprietePage = ()  => {
   
