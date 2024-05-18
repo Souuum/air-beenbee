@@ -6,6 +6,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Button } from '@mui/material';
+import { ProprieteCard } from '../components/ProprieteCard';
 
 const Reservation = () => {
     const { authState } = useAuth();
@@ -73,13 +74,10 @@ const Reservation = () => {
 
     return (
         <div>
-            <h1>Réserver la propriété {propriete?.id_propriete}</h1>
-            {isAuthenticated && user?.role === "locataire" ? (
+            {isAuthenticated && user?.role === "locataire"  && propriete ? (
                 <div>
-                    <h1>Reservation Page</h1>
-                    <h2>Propriété {propriete?.id_propriete}</h2>
-                    <h3>{propriete?.description}</h3>
-                    <p>{propriete?.description}</p>
+                    <h1>Demande de réservation</h1>
+                   <ProprieteCard propriete={propriete} />
 
                     <div className="flex ">
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
