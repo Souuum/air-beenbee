@@ -10,7 +10,7 @@ interface ProprieteCardProps {
 export const ProprieteCard: React.FC<ProprieteCardProps> = ({ propriete,link }) => {
     return (
         link ? (
-        <Link className=" w-fit "  to={`/reservation/${propriete.id_propriete}`}>
+        <Link className=" w-fit "  to={`/create-reservation/${propriete.id_propriete}`}>
             <Card sx={{ maxWidth: 345, m: 2, boxShadow: 3, '&:hover': { boxShadow: 6 } }}>
                 <CardContent>
                     <Typography variant="h5" component="div">

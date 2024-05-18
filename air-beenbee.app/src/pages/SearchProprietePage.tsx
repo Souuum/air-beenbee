@@ -130,7 +130,7 @@ const SearchProprietePage = () => {
               Apply Filters
             </Button>
           </div>
-          <div className="grid grid-cols-3 gap-4 ">
+          <div className="grid grid-cols-4 gap-4 ">
             {proprietes.length !== 0 ? (
               proprietes.map((propriete) => (
                 <ProprieteCard key={propriete.id_propriete} propriete={propriete} link />

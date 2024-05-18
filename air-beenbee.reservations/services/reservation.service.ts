@@ -46,6 +46,25 @@ export const getReservationsByIdLocataire = async (req: Request, res: Response) 
     }
 }
 
+export const getReservationsByIdPropriete = async (req: Request, res: Response) => {
+    try {
+        const { id_propriete } = req.params;
+
+        const reservations = await Reservation.findAll({
+            where: { id_propriete }
+        });
+
+        if (reservations.length === 0) {
+            return res.status(404).json({ message: 'No reservations found for this propriete' });
+        }
+
+        return res.status(200).json(reservations);
+    } catch (error) {
+        console.error('Error during findReservationsByIdPropriete:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
 export const createReservation = async (req: Request, res: Response) => {
     try {
         const { type, date_debut, date_fin, id_propriete, id_locataire } = req.body;

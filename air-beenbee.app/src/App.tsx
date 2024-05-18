@@ -8,7 +8,8 @@ import ProprietaireRegisterPage from './pages/ProprietaireRegisterPage';
 import LocataireLoginPage from './pages/LocataireLoginPage';
 import PropretaireLoginPage from './pages/ProprietaireLoginPage';
 import SearchProprietePage from './pages/SearchProprietePage';
-import ReservePage from './pages/ReservePage';
+import CreateReservationPage from './pages/CreateReservationPage';
+import ReservationPage from './pages/ReservationPage';
 
 import AppBar from "./components/AppBar";
 import AddProprietePage from './pages/AddProprietePage';
@@ -25,7 +26,8 @@ function App() {
         { path: "/register/locataire", element: <LocataireRegisterPage /> },
         { path: "/register/proprietaire", element: <ProprietaireRegisterPage />},
         { path: "/search", element: <SearchProprietePage />},
-        { path: "/reservation/:id_propriete", element: <ReservePage />},
+        { path: "/create-reservation/:id_propriete", element: <CreateReservationPage />},
+        {path: "/reservation/:id_reservation", element: <ReservationPage />},
         { path: "/addpropriete", element: <AddProprietePage />}
       ],
     },

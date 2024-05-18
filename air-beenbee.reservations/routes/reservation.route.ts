@@ -3,6 +3,7 @@ import {
     getReservation, 
     getReservations,
     getReservationsByIdLocataire, 
+    getReservationsByIdPropriete,
     createReservation, 
     updateReservation, 
     deleteReservation 
@@ -13,6 +14,8 @@ var router = express.Router();
 router.get('/', getReservations);
 
 router.get('/getReservationsByIdLocataire/:id_locataire', getReservationsByIdLocataire);
+
+router.get('/getReservationsByIdPropriete/:id_propriete', getReservationsByIdPropriete);
 
 router.get('/:id', getReservation);
 
