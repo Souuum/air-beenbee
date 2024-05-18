@@ -23,7 +23,7 @@ const AddProprietePage = () => {
   const handleFormSubmit = async (formData: { [key: string]: any }) => {
     if(user && user.role === "proprietaire"){
       try {
-        const response = await fetch("http://localhost:3002/propriete", {
+        const response = await fetch("http://localhost:3001/createPropriete", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -47,13 +47,6 @@ const AddProprietePage = () => {
   return (
     <div>
       <h1>Add Page</h1>
-      <div className="flex w-full justify-center">
-        <Form
-          formStructure={formStructure}
-          label="Ajouter"
-          onSubmit={handleFormSubmit}
-        />
-      </div>
       {isAuthenticated && user?.role === "proprietaire" ? (
         <div>
           <div className="flex w-full justify-center">

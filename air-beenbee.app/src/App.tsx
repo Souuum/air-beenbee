@@ -25,7 +25,7 @@ function App() {
         { path: "/register/locataire", element: <LocataireRegisterPage /> },
         { path: "/register/proprietaire", element: <ProprietaireRegisterPage />},
         { path: "/search", element: <SearchProprietePage />},
-        { path: "/reservation/:id_propriete", element: <ReservePage />}
+        { path: "/reservation/:id_propriete", element: <ReservePage />},
         { path: "/addpropriete", element: <AddProprietePage />}
       ],
     },
